@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="de">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>conda - Eine Einführung</title>
+
+		<meta name="description" content="Eine Einführung in conda">
+		<meta name="author" content="Klaus-Dieter Warzecha">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+
+		<style>
+			section {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>conda</h1>
+					<h2>Eine Einführung</h2>
+					<p>
+						Klaus-Dieter Warzecha <br><a href="http://twitter.com/klauswarzecha">@klauswarzecha</a>
+					</p>
+				</section>
+
+
+				<section>
+					<h2>Was kann conda?</h2>
+					<ul>
+						<li>binäre Python-Pakete installieren</li>
+						<li>Environments verwalten</li>
+						<li>Pakete erzeugen</li>
+						<li>andere Programmiersprachen installieren (R)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Woher bekomme ich conda?</h2>
+					<p>Python-Distributionen von <a href="https://www.continuum.io/">Continuum Analytics</a></p>
+					<h3>Miniconda</h3>
+					<p>minimalistisches Python mit conda, pip und setuptools</p>
+					<h3>Anaconda</h3>
+					<p>Umfangreiche Python-Distribution mit ca. 200 meist wissenschaftlichen Paketen (numpy, scipy, pandas)</p>
+				</section>
+
+				<section>
+					<h2>Woher kommen die Pakete?</h2>
+					<p></p>
+					<ol>
+						<li>Installation mit <code>conda</code>: &#8222;channels&#8220;</li>
+						<ul>
+							<li><a href="htps://repo.continuum.io/pkgs/">Continuum Analytics conda repository</a> (default)</li>
+							<li><a href="https://anaconda.org/">Anaconda Cloud</a>:
+								private und öffentliche Repos für Pakete, Environments und Jupyter Notebooks
+							</li>
+
+							<li>lokaler Channel (Firmennetzwerk, etc.)</li>	
+						</ul>
+						<li>Installation mit <code>pip</code>:</li>
+						<ul>
+							<li><a href="htps://pypi.org">PyPI &mdash;Python Package Index</a></li>
+						</ul>
+					</ol>
+				</section>
+				<section>
+					<h2>Wo landen die Pakete?</h2>
+					<ul>
+						<li>im &#8222;root&#8220; environment, z.B.
+							<code><pre>/home/klaus/anaconda3/python3.5/site-packages</pre></code>
+					</li>
+					<li>im <strong>aktiven</strong> environment</li>
+				</ul>
+				<p>conda hebt alle Versionen aller installierten Pakete (tarballs und ausgepackte Pakete) in <code>$CONDA_BASE/pkgs</code> auf!<br>
+					&rArr; aufräumen mit <code>conda clean -pt</code></p>
+			</section>
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Informationen ermitteln</h3>	
+				<dl>
+					<dt><code>conda info</code></dt>
+					<dd>Informationen zur Installation</dd>
+					<dt><code>conda list</code></dt>
+					<dd>installierte Pakete des <strong>aktiven</strong> Environments anzeigen</dd>
+					<dt><code>conda env list</code></dt>
+					<dt><code>conda info --envs</code></dt>
+					<dd>alle Environments anzeigen</dd>	
+				</dl>
+			</section>
+
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Environment anlegen</h3>	
+				<dl>
+					<dt><code>conda create --name meetup27 requests python=2.7</code></dt>
+					<dd>erzeugt das Environment meetup27</dd>
+					<dd>installiert Python 2.7</dd>
+					<dd>installiert das Paket <code>requests</code></dd>
+
+					<dt><code>conda create -n meetup26 python=2.6</code></dt>
+					<dd>erzeugt das Environment meetup26</dd>
+					<dd>installiert Python 2.6</dd>
+					<dd>installiert keine weiteren Pakete</dd>
+				</dl>
+			</section>
+
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Environment aktivieren</h3>	
+				<dl>
+					<dt><code>source activate <em>envname</em></code></dt>
+					<dd>aktiviert <em>envname</em></dd>
+				</dl>
+				<h3>Environment deaktivieren</h3>	
+				<dl>
+					<dt><code>source deactivate <em>envname</em></code></dt>
+					<dd>deaktiviert <em>envname</em></dd>
+				</dl>
+
+				<h3>Environment löschen</h3>	
+				<dl>
+					<dt><code>conda env remove --name <em>envname</em></code></dt>
+					<dd>löscht <em>envname</em></dd>
+				</dl>
+			</section>
+
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Pakete installieren</h3>	
+				<dl>
+					<dt><code>conda install <em>package</em></code></dt>
+					<dd>installiert <em>package</em> aus dem conda Repository in das aktuelle Environment</dd>
+					<dt><code>conda install -c <em>dingens</em> <em>zeug=2016.07</em></code></dt>
+					<dd>installiert das Paket <em>zeug</em> in der Version 2016.07 aus channel <em>dingens</em> in der Anaconda Cloud in das aktuelle Environment</dd>
+					<dt><code>pip install <em>package</em></code></dt>
+					<dd>installiert das Paket <em>package</em> aus PyPI</dd>
+				</dl>
+			</section>
+
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Pakete deinstallieren</h3>	
+				<dl>
+					<dt><code>conda remove <em>package</em></code></dt>
+					<dd>entfernt <em>package</em> aus aktuellen Environment</dd>
+					<dt><code>pip uninstall <em>package</em></code></dt>
+					<dd>entfernt das mit <code>pip</code> installierte Paket <em>package</em></dd>
+				</dl>
+			</section>
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Pakete aktualisieren</h3>	
+				<dl>
+					<dt><code>conda update <em>package</em></code></dt>
+					<dd>aktualisiert <em>package</em></dd>
+					<dt><code>conda update --all</code></dt>
+					<dd>aktualisiert alle Pakete im aktiven Environment</dd>
+				</dl>
+			</section>
+
+			<section>
+				<h2>conda in der Praxis</h2>
+				<h3>Aufräumen</h3>	
+				<p><strong>Alle</strong> tarballs und ausgepackten Pakete bleiben in <code>$CONDA_BASE/pkgs</code> erhalten, deshalb:</p>
+
+				<dl>
+					<dt><code>conda clean -p</code></dt>
+					<dd>löscht die Pakete</dd>
+					<dt><code>conda clean -t</code></dt>
+					<dd>löscht die tarballs</dd>
+					<dt><code>conda clean --all --dry-run</code></dt>
+					<dd>zeigt, was gelöscht werden würde ;-)</dd>
+				</dl>
+			</section>
+
+			<section>
+				<h2>Dokumentation</h2>
+				<p><a href="http://conda.pydata.org/docs/">http://conda.pydata.org/docs/</a></p>
+				<ul>
+					<li><a href="http://conda.pydata.org/docs/get-started.html">Get started</a></li>
+					<li><a href="http://conda.pydata.org/docs/test-drive.html">Conda Test drive</a></li>
+				</ul>
+			</section>	
+
+		</div> <!-- /.slides -->
+
+	</div> <!-- /.reveal -->
+
+	<script src="lib/js/head.min.js"></script>
+	<script src="js/reveal.js"></script>
+
+	<script>
+
+		// More info https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: false,
+
+		transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+		// More info https://github.com/hakimel/reveal.js#dependencies
+		dependencies: [
+		{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+		{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+		{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+		{ src: 'plugin/zoom-js/zoom.js', async: true },
+		{ src: 'plugin/notes/notes.js', async: true }
+		]
+	});
+
+	</script>
+
+</body>
+</html>
