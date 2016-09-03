@@ -1,7 +1,7 @@
 # conda-pydo
 A short introduction to conda (in German)
 * * *
-Conda ist das Management-Werkzeug der von [Continuum Analytics](https://www.continuum.io) frei zur Verügung gestellten Python-Distribution **ANACONDA**.
+Conda ist das Management-Werkzeug der von [Continuum Analytics](https://www.continuum.io) frei zur Verfügung gestellten Python-Distribution **ANACONDA**.
 
 Conda kann
   * binäre Pakete aus verschiedenen Kanälen installieren
